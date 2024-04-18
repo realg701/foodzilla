@@ -44,6 +44,7 @@ const Home = () => {
   return (
     <>
       <NavBar
+        selectedButton={selectedButton}
         filteredFood={filteredFood}
         data={filteredData}
         filteredData={filteredData}

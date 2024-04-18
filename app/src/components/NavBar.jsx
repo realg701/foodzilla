@@ -3,7 +3,13 @@ import FilterButtons from "./FilterButtons";
 import { Button } from "@mui/material";
 import { Container } from "../Home";
 
-const NavBar = ({ filteredFood, data, filteredData, setFilteredData }) => {
+const NavBar = ({
+  selectedButton,
+  filteredFood,
+  data,
+  filteredData,
+  setFilteredData,
+}) => {
   const searchFood = (e) => {
     const searchValue = e.target.value;
     console.log(searchValue);
@@ -29,7 +35,10 @@ const NavBar = ({ filteredFood, data, filteredData, setFilteredData }) => {
             <input onChange={searchFood} placeholder="Search Food" />
           </div>
         </div>
-        <FilterButtons filteredFood={filteredFood} />
+        <FilterButtons
+          selectedButton={selectedButton}
+          filteredFood={filteredFood}
+        />
       </Container>
     </Nav>
   );
@@ -75,6 +84,9 @@ const Nav = styled.section`
       outline: none;
       opacity: 0.7;
       padding: 10px;
+      &::placeholder {
+        color: black;
+      }
     }
   }
 
