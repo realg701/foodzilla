@@ -1,20 +1,25 @@
 import { Button } from "@mui/material";
 import styled from "styled-components";
 
-const FilterButtons = () => {
+const FilterButtons = ({ filteredFood }) => {
+  const filterButtons = [
+    { name: "All", type: "all", color: "primary" },
+    { name: "Breakfast", type: "breakfast", color: "secondary" },
+    { name: "Lunch", type: "lunch", color: "success" },
+    { name: "Dinner", type: "dinner", color: "error" },
+  ];
   return (
     <NavButtons>
-      <Button variant="contained">All</Button>
-
-      <Button variant="contained" color="secondary">
-        Breckfast
-      </Button>
-      <Button variant="contained" color="success">
-        Lunch
-      </Button>
-      <Button variant="contained" color="error">
-        Dinner
-      </Button>
+      {filterButtons.map((value) => (
+        <Button
+          onClick={() => filteredFood(value.type)}
+          variant={"contained"}
+          color={value.color}
+          key={value.name}
+        >
+          {value.name}
+        </Button>
+      ))}
     </NavButtons>
   );
 };

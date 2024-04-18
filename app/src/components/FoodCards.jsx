@@ -15,7 +15,7 @@ const FoodCards = ({ data, loading, error }) => {
 export default FoodCards;
 
 const CardsContainer = styled.div`
-  height: calc(100vh - 172px);
+  min-height: calc(100vh - 172px);
   background-image: url("/bg.png");
   background-size: cover;
 `;

@@ -10,6 +10,7 @@ const Home = () => {
   const [filteredData, setFilteredData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedButton, setSelectedButton] = useState("all");
 
   useEffect(() => {
     const fetchFoodData = async () => {
@@ -26,10 +27,29 @@ const Home = () => {
     };
     fetchFoodData();
   }, []);
+
+  const filteredFood = (type) => {
+    if (type == "all") {
+      setFilteredData(data);
+      setSelectedButton("all");
+      return;
+    }
+
+    const filter = data?.filter((food) =>
+      food.type.toLowerCase().includes(type.toLowerCase())
+    );
+    setFilteredData(filter);
+    setSelectedButton(type);
+  };
   return (
     <>
-      <NavBar filteredData={filteredData} setFilteredData={setFilteredData} />
-      <FoodCards data={data} loading={loading} error={error} />
+      <NavBar
+        filteredFood={filteredFood}
+        data={filteredData}
+        filteredData={filteredData}
+        setFilteredData={setFilteredData}
+      />
+      <FoodCards data={filteredData} loading={loading} error={error} />
     </>
   );
 };
